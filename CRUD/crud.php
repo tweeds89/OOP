@@ -45,4 +45,13 @@ class Crud {
        }
        echo '</table>';     
    }
+   
+   function uploadFile($file){
+       if(isset($file)){
+           
+           $destination = './uploads/'. $file['name'];
+           move_uploaded_file($file['tmp_name'], $destination);
+           return $file['name'];
+       }
+   }
 }
