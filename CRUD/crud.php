@@ -24,13 +24,13 @@ class Crud {
        
        $result = $this->executeQuery($query);
        echo '
-            <table>
+            <table class="table table-bordered table-striped">
                 <tr>
-                    <th width = "10%">Zdjęcie</th>
-                    <th width = "35%">Imię</th>
-                    <th width = "35%">Nazwisko</th>
-                    <th width = "10%">Aktualizuj</th>
-                    <th width = "10%">Usuń</th>
+                    <th width = "10%" class="text-center">Zdjęcie</th>
+                    <th width = "35%" class="text-center">Imię</th>
+                    <th width = "35%" class="text-center">Nazwisko</th>
+                    <th width = "10%" class="text-center">Aktualizuj</th>
+                    <th width = "10%" class="text-center">Usuń</th>
                 </tr>';
        
        while($row = mysqli_fetch_object($result)){
@@ -39,8 +39,8 @@ class Crud {
                     <td><img src="uploads/'.$row->image.'" width="50" height="35" /></td>
                     <td>'.$row->first_name.'</td>
                     <td>'.$row->last_name.'</td>
-                    <td><button type="button" name="update" id="'.$row->id.'" class="update">Aktualizuj</button></td>
-                    <td><button type="button" name="delete" id="'.$row->id.'" class="delete">Usuń</button></td>
+                    <td><button type="button" name="update" id="'.$row->id.'" class="btn btn-success btn-xs update">Aktualizuj</button></td>
+                    <td><button type="button" name="delete" id="'.$row->id.'" class="btn btn-danger btn-xs delete delete">Usuń</button></td>
                 </tr>';
        }
        echo '</table>';     

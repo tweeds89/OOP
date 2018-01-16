@@ -14,5 +14,37 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
     
     $crud->executeQuery($query);   
   }
+  
+  if($_POST['action'] == "Fetch"){
+      $output = '';
+      $query = "SELECT * FROM users WHERE id = '".$_POST['user_id']."'";
+      $result = $crud->executeQuery($query);
+      while($row = mysqli_fetch_array($result)){
+          $output['first_name'] = $row['first_name'];
+          $output['last_name'] = $row['last_name'];
+          $output['user_image'] = $row['image'];
+          //print_r($output);
+          $output['image'] = '<img src="uploads/'.$row['image'].'" width="50" height="35"/>';       
+      }
+      echo json_encode($output);
+  }
+  
+  if($_POST['action'] == "Edit"){
+      $image = "";
+      if($_FILES['user_image']['name'] !=''){
+          $image = $crud->uploadFile($_FILES['user_image']);
+      }else{
+          $image = $_POST['hidden_user_image'];
+      }
+      $first_name = mysqli_real_escape_string($crud->connect, $_POST['first_name']);
+      $last_name = mysqli_real_escape_string($crud->connect, $_POST['last_name']);
+      
+      $query = "UPDATE users SET first_name = '".$first_name."', last_name = '".$last_name."',
+                image = '".$image."' WHERE id = '".$_POST['user_id']."'";
+      
+      $crud->executeQuery($query);
+      echo 'Dane zaktualizowane';
+              
+      }
 }
 

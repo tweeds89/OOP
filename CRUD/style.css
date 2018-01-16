@@ -2,7 +2,6 @@ body{
   margin: auto;  
   padding:0;  
   background-color:#f1f1f1;  
-
 }  
 .box{  
   width:900px;  
@@ -14,14 +13,10 @@ body{
   margin-top:100px;  
 }  
 
-table, th, td {
-  margin: auto;
-  border-collapse: collapse;
-  border:1px solid #ccc; 
+table {  
   text-align: center;
 }
 
-#insert_user{
-  display:none;
-}
+
+
 
