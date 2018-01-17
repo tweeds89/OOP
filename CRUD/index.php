@@ -78,7 +78,7 @@ $crud = new Crud();
                         $('#user_form')[0].reset();
                         loadData();
                         $('#action').val('Insert');
-                        $('#btn_action').val("Insert");
+                        $('#btn_action').val("Wstaw");
                         $('#uploaded_image').html('');
                     }
                 });
@@ -105,8 +105,25 @@ $crud = new Crud();
                    $('#action').val("Edit");
                    $('#user_id').val(user_id);
                }
-            });
-            
+            });           
+        });
+        
+        $(document).on('click', '.delete', function(){
+            var user_id = $(this).attr('id');
+            var action = "Delete";
+            if(confirm("Na pewno chcesz usunąć?")){
+                $.ajax({
+                    url:"action.php",
+                    method:"POST",
+                    data:{user_id:user_id, action:action},
+                    success:function(data){
+                        alert(data);
+                        loadData();
+                    }
+                });
+            }else{
+                return false;
+            }
         });
        });
     </script>

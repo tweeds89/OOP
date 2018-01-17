@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
     $image = $crud->uploadFile($_FILES['user_image']);
     $query = "INSERT INTO users (first_name, last_name, image) VALUES ('$first_name', '$last_name', '$image')";
     
-    $crud->executeQuery($query);   
+    $crud->executeQuery($query);
   }
   
   if($_POST['action'] == "Fetch"){
@@ -43,8 +43,13 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
                 image = '".$image."' WHERE id = '".$_POST['user_id']."'";
       
       $crud->executeQuery($query);
-      echo 'Dane zaktualizowane';
-              
+      echo 'Dane zostały zaktualizowane';            
       }
+      
+  if($_POST['action'] == "Delete"){
+      $query = "DELETE FROM users WHERE id = '".$_POST['user_id']."'";
+      $crud->executeQuery($query);
+      echo "Dane zostały usunięte";
+  }
 }
 
