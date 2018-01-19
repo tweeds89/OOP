@@ -51,5 +51,12 @@ if($_SERVER['REQUEST_METHOD']==="POST"){
       $crud->executeQuery($query);
       echo "Dane zostały usunięte";
   }
+  
+  if($_POST['action'] == "Search"){
+      $search = mysqli_real_escape_string($crud->connect, $_POST['search']);
+      $query = "SELECT * FROM users WHERE first_name LIKE '%".$search."%' OR last_name LIKE '%".$search."%' ORDER BY id DESC";
+      
+      echo $crud->getDataFromTable($query);
+  }
 }
 

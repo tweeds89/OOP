@@ -13,8 +13,13 @@ $crud = new Crud();
     <body>
         <div class="box">
             <h2 align="center">Create Read Update Delete</h2>
-            <button type="button" name="add" class="btn btn-success" data-toggle="collapse" data-target="#user_collapse">Dodaj</button>
-            <br/> <br/>
+            <div class="col-md-8">
+               <button type="button" name="add" class="btn btn-success" data-toggle="collapse" data-target="#user_collapse">Dodaj</button>
+            </div>
+            <div class="col-md-4">
+               <input type="text" name="search" id="search" placeholder="Szukaj"  class="form-control" />
+            </div>
+            <br/><br/>
             <div id="user_collapse" class="collapse"> 
             <form method="POST" id="user_form">
                 <label>Podaj Imię:</label>
@@ -124,6 +129,23 @@ $crud = new Crud();
             }else{
                 return false;
             }
+        });
+        
+        $('#search').keyup(function(){
+            var search = $('#search').val();
+            var action = "Search";
+            if (search != ''){
+                $.ajax({
+                    url:"action.php",
+                    method:"POST",
+                    data:{search:search, action:action},
+                    success:function(data){
+                        $('#user_table').html(data);
+                    }
+                });
+            }else{
+                loadData();
+            }        
         });
        });
     </script>
