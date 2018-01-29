@@ -3,7 +3,7 @@ class Crud {
    public $connect;
    private $host = "localhost";
    private $username = "root";
-   private $password = "coderslab";
+   private $password = "";
    private $database = "crud_table";
     
    function __construct(){
