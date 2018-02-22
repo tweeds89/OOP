@@ -13,16 +13,17 @@ class Crud {
    
    public function databaseConnect(){
        
-       $this->connect = mysqli_connect($this->host, $this->username, $this->password, $this->database);
+       $this->connect = new mysqli($this->host, $this->username, $this->password, $this->database);
    }
    
-   public function executeQuery($query){
-       return mysqli_query($this->connect, $query);
+   public function executeQuery($sql){
+    
+       return $result = $this->connect->query($sql);
    }
    
-   public function getDataFromTable($query){
+   public function getDataFromTable($sql){
        
-       $result = $this->executeQuery($query);
+       $result = $this->executeQuery($sql);
        echo '
             <table class="table table-bordered table-striped">
                 <tr>
